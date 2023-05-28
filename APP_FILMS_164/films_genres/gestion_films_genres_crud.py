@@ -32,11 +32,10 @@ def films_genres_afficher(id_film_sel):
     if request.method == "GET":
         try:
             with DBconnection() as mc_afficher:
-                strsql_genres_films_afficher_data = """SELECT id_film, nom_film, duree_film, description_film, cover_link_film, date_sortie_film,
-                                                            GROUP_CONCAT(intitule_genre) as GenresFilms FROM t_genre_film
-                                                            RIGHT JOIN t_film ON t_film.id_film = t_genre_film.fk_film
-                                                            LEFT JOIN t_genre ON t_genre.id_genre = t_genre_film.fk_genre
-                                                            GROUP BY id_film"""
+                strsql_genres_films_afficher_data = """SELECT montant reel FROM t_pers_depenses_categorie"""
+                                                            #INNER JOIN t_film ON t_film.id_film = t_genre_film.fk_film
+                                                            #INNER JOIN t_genre ON t_genre.id_genre = t_genre_film.fk_genre
+                                                            #GROUP BY id_film"""
                 if id_film_sel == 0:
                     # le paramètre 0 permet d'afficher tous les films
                     # Sinon le paramètre représente la valeur de l'id du film
@@ -276,7 +275,7 @@ def genres_films_afficher_data(valeur_id_film_selected_dict):
     print("valeur_id_film_selected_dict...", valeur_id_film_selected_dict)
     try:
 
-        strsql_film_selected = """SELECT id_film, nom_film, duree_film, description_film, cover_link_film, date_sortie_film, GROUP_CONCAT(id_genre) as GenresFilms FROM t_genre_film
+        strsql_film_selected = """SELECT * FROM t_genre_film
                                         INNER JOIN t_film ON t_film.id_film = t_genre_film.fk_film
                                         INNER JOIN t_genre ON t_genre.id_genre = t_genre_film.fk_genre
                                         WHERE id_film = %(value_id_film_selected)s"""

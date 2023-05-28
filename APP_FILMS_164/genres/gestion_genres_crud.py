@@ -1,5 +1,5 @@
 """Gestion des "routes" FLASK et des données pour les genres.
-Fichier : gestion_genres_crud.py
+Fichier : gestion_personne_crud.py
 Auteur : OM 2021.03.16
 """
 from pathlib import Path
@@ -34,7 +34,9 @@ def genres_afficher(order_by, id_genre_sel):
         try:
             with DBconnection() as mc_afficher:
                 if order_by == "ASC" and id_genre_sel == 0:
-                    strsql_genres_afficher = """SELECT * FROM t_personne"""
+                    strsql_genres_afficher = """SELECT id_categorie, nom_categorie, montant_reel 
+                                                FROM t_categorie 
+                                                INNER JOIN t_pers_depense_reel_categorie t_pers_depense_reel_categorie ON t_pers_depense_reel_categorie.id_pers_dep_reel_cat = t_categorie.id_categorie"""
                     mc_afficher.execute(strsql_genres_afficher)
                 elif order_by == "ASC":
                     # C'EST LA QUE VOUS ALLEZ DEVOIR PLACER VOTRE PROPRE LOGIQUE MySql
@@ -43,11 +45,15 @@ def genres_afficher(order_by, id_genre_sel):
                     # donc, je précise les champs à afficher
                     # Constitution d'un dictionnaire pour associer l'id du genre sélectionné avec un nom de variable
                     valeur_id_genre_selected_dictionnaire = {"value_id_genre_selected": id_genre_sel}
-                    strsql_genres_afficher = """SELECT id_genre, intitule_genre, date_ins_genre  FROM t_genre WHERE id_genre = %(value_id_genre_selected)s"""
+                    strsql_genres_afficher = """SELECT id_categorie, nom_categorie, montant_reel 
+                                                FROM t_categorie 
+                                                INNER JOIN t_pers_depense_reel_categorie t_pers_depense_reel_categorie ON t_pers_depense_reel_categorie.id_pers_dep_reel_cat = t_categorie.id_categorie"""
 
                     mc_afficher.execute(strsql_genres_afficher, valeur_id_genre_selected_dictionnaire)
                 else:
-                    strsql_genres_afficher = """SELECT * FROM t_personne"""
+                    strsql_genres_afficher = """SELECT id_categorie, nom_categorie, montant_reel 
+                                                FROM t_categorie 
+                                                INNER JOIN t_pers_depense_reel_categorie t_pers_depense_reel_categorie ON t_pers_depense_reel_categorie.id_pers_dep_reel_cat = t_categorie.id_categorie"""
 
                     mc_afficher.execute(strsql_genres_afficher)
 
@@ -57,7 +63,7 @@ def genres_afficher(order_by, id_genre_sel):
 
                 # Différencier les messages si la table est vide.
                 if not data_genres and id_genre_sel == 0:
-                    flash("""La table "t_genre" est vide. !!""", "warning")
+                    flash("""La table "t_categorie" est vide. !!""", "warning")
                 elif not data_genres and id_genre_sel > 0:
                     # Si l'utilisateur change l'id_genre dans l'URL et que le genre n'existe pas,
                     flash(f"Le genre demandé n'existe pas !!", "warning")
@@ -106,7 +112,7 @@ def genres_ajouter_wtf():
                 valeurs_insertion_dictionnaire = {"value_intitule_genre": name_genre}
                 print("valeurs_insertion_dictionnaire ", valeurs_insertion_dictionnaire)
 
-                strsql_insert_genre = """INSERT INTO t_genre (id_genre,intitule_genre) VALUES (NULL,%(value_intitule_genre)s) """
+                strsql_insert_genre = """INSERT INTO t_categorie (id_categorie,nom_categorie) VALUES (NULL,%(value_intitule_genre)s) """
                 with DBconnection() as mconn_bd:
                     mconn_bd.execute(strsql_insert_genre, valeurs_insertion_dictionnaire)
 
@@ -132,9 +138,9 @@ def genres_ajouter_wtf():
     
     Paramètres : sans
     
-    But : Editer(update) un genre qui a été sélectionné dans le formulaire "genres_afficher.html"
+    But : Editer(update) un genre qui a été sélectionné dans le formulaire "personne_afficher.html"
     
-    Remarque :  Dans le champ "nom_genre_update_wtf" du formulaire "genres/genre_update_wtf.html",
+    Remarque :  Dans le champ "nom_genre_update_wtf" du formulaire "genres/personne_update_wtf.html",
                 le contrôle de la saisie s'effectue ici en Python.
                 On transforme la saisie en minuscules.
                 On ne doit pas accepter des valeurs vides, des valeurs avec des chiffres,
@@ -154,7 +160,7 @@ def genre_update_wtf():
     try:
         print(" on submit ", form_update.validate_on_submit())
         if form_update.validate_on_submit():
-            # Récupèrer la valeur du champ depuis "genre_update_wtf.html" après avoir cliqué sur "SUBMIT".
+            # Récupèrer la valeur du champ depuis "personne_update_wtf.html" après avoir cliqué sur "SUBMIT".
             # Puis la convertir en lettres minuscules.
             name_genre_update = form_update.nom_genre_update_wtf.data
             name_genre_update = name_genre_update.lower()
@@ -166,7 +172,7 @@ def genre_update_wtf():
                                           }
             print("valeur_update_dictionnaire ", valeur_update_dictionnaire)
 
-            str_sql_update_intitulegenre = """UPDATE t_genre SET intitule_genre = %(value_name_genre)s, 
+            str_sql_update_intitulegenre = """UPDATE t_categorie (id_categorie,nom_categorie) = %(value_name_genre)s, 
             date_ins_genre = %(value_date_genre_essai)s WHERE id_genre = %(value_id_genre)s """
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_intitulegenre, valeur_update_dictionnaire)
@@ -189,7 +195,7 @@ def genre_update_wtf():
             print("data_nom_genre ", data_nom_genre, " type ", type(data_nom_genre), " genre ",
                   data_nom_genre["intitule_genre"])
 
-            # Afficher la valeur sélectionnée dans les champs du formulaire "genre_update_wtf.html"
+            # Afficher la valeur sélectionnée dans les champs du formulaire "personne_update_wtf.html"
             form_update.nom_genre_update_wtf.data = data_nom_genre["intitule_genre"]
             form_update.date_genre_wtf_essai.data = data_nom_genre["date_ins_genre"]
 
@@ -198,7 +204,7 @@ def genre_update_wtf():
                                       f"{genre_update_wtf.__name__} ; "
                                       f"{Exception_genre_update_wtf}")
 
-    return render_template("genres/genre_update_wtf.html", form_update=form_update)
+    return render_template("/genres/genre_update_wtf.html", form_update=form_update)
 
 
 """
@@ -209,9 +215,9 @@ def genre_update_wtf():
     
     Paramètres : sans
     
-    But : Effacer(delete) un genre qui a été sélectionné dans le formulaire "genres_afficher.html"
+    But : Effacer(delete) un genre qui a été sélectionné dans le formulaire "personne_afficher.html"
     
-    Remarque :  Dans le champ "nom_genre_delete_wtf" du formulaire "genres/genre_delete_wtf.html",
+    Remarque :  Dans le champ "nom_genre_delete_wtf" du formulaire "genres/personne_delete_wtf.html",
                 le contrôle de la saisie est désactivée. On doit simplement cliquer sur "DELETE"
 """
 
@@ -234,7 +240,7 @@ def genre_delete_wtf():
 
             if form_delete.submit_btn_conf_del.data:
                 # Récupère les données afin d'afficher à nouveau
-                # le formulaire "genres/genre_delete_wtf.html" lorsque le bouton "Etes-vous sur d'effacer ?" est cliqué.
+                # le formulaire "genres/personne_delete_wtf.html" lorsque le bouton "Etes-vous sur d'effacer ?" est cliqué.
                 data_films_attribue_genre_delete = session['data_films_attribue_genre_delete']
                 print("data_films_attribue_genre_delete ", data_films_attribue_genre_delete)
 
@@ -277,7 +283,7 @@ def genre_delete_wtf():
                 print("data_films_attribue_genre_delete...", data_films_attribue_genre_delete)
 
                 # Nécessaire pour mémoriser les données afin d'afficher à nouveau
-                # le formulaire "genres/genre_delete_wtf.html" lorsque le bouton "Etes-vous sur d'effacer ?" est cliqué.
+                # le formulaire "genres/personne_delete_wtf.html" lorsque le bouton "Etes-vous sur d'effacer ?" est cliqué.
                 session['data_films_attribue_genre_delete'] = data_films_attribue_genre_delete
 
                 # Opération sur la BD pour récupérer "id_genre" et "intitule_genre" de la "t_genre"
@@ -290,10 +296,10 @@ def genre_delete_wtf():
                 print("data_nom_genre ", data_nom_genre, " type ", type(data_nom_genre), " genre ",
                       data_nom_genre["intitule_genre"])
 
-            # Afficher la valeur sélectionnée dans le champ du formulaire "genre_delete_wtf.html"
+            # Afficher la valeur sélectionnée dans le champ du formulaire "personne_delete_wtf.html"
             form_delete.nom_genre_delete_wtf.data = data_nom_genre["intitule_genre"]
 
-            # Le bouton pour l'action "DELETE" dans le form. "genre_delete_wtf.html" est caché.
+            # Le bouton pour l'action "DELETE" dans le form. "personne_delete_wtf.html" est caché.
             btn_submit_del = False
 
     except Exception as Exception_genre_delete_wtf:
@@ -301,7 +307,7 @@ def genre_delete_wtf():
                                       f"{genre_delete_wtf.__name__} ; "
                                       f"{Exception_genre_delete_wtf}")
 
-    return render_template("genres/genre_delete_wtf.html",
+    return render_template("genres/personne_delete_wtf.html",
                            form_delete=form_delete,
                            btn_submit_del=btn_submit_del,
                            data_films_associes=data_films_attribue_genre_delete)

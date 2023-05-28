@@ -16,32 +16,63 @@ CREATE DATABASE IF NOT EXISTS marcos_romero_info1a_m164;
 
 USE marcos_romero_info1a_m164;
 -- --------------------------------------------------------
--- --------------------------------------------------------
--- Hôte :                        127.0.0.1
--- Version du serveur:           5.1.72-community - MySQL Community Server (GPL)
--- SE du serveur:                Win32
--- HeidiSQL Version:             10.2.0.5599
+-- Hôte:                         127.0.0.1
+-- Version du serveur:           8.0.30 - MySQL Community Server - GPL
+-- SE du serveur:                Win64
+-- HeidiSQL Version:             12.1.0.6537
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Listage de la structure de la base pour marcos_romero_info1a_m164
-CREATE DATABASE IF NOT EXISTS `marcos_romero_info1a_m164` /*!40100 DEFAULT CHARACTER SET latin1 */;
+DROP DATABASE IF EXISTS `marcos_romero_info1a_m164`;
+CREATE DATABASE IF NOT EXISTS `marcos_romero_info1a_m164` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `marcos_romero_info1a_m164`;
 
--- Listage de la structure de la table marcos_romero_info1a_m164. id_personnne
-CREATE TABLE IF NOT EXISTS `id_personnne` (
-  `ENom` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+-- Listage de la structure de table marcos_romero_info1a_m164. t_categorie
+DROP TABLE IF EXISTS `t_categorie`;
+CREATE TABLE IF NOT EXISTS `t_categorie` (
+  `id_categorie` int NOT NULL AUTO_INCREMENT,
+  `nom_categorie` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_categorie`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table marcos_romero_info1a_m164.id_personnne : 0 rows
-/*!40000 ALTER TABLE `id_personnne` DISABLE KEYS */;
-/*!40000 ALTER TABLE `id_personnne` ENABLE KEYS */;
+-- Les données exportées n'étaient pas sélectionnées.
 
+-- Listage de la structure de table marcos_romero_info1a_m164. t_personne
+DROP TABLE IF EXISTS `t_personne`;
+CREATE TABLE IF NOT EXISTS `t_personne` (
+  `id_personne` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_personne`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Les données exportées n'étaient pas sélectionnées.
+
+-- Listage de la structure de table marcos_romero_info1a_m164. t_pers_depense_categorie
+DROP TABLE IF EXISTS `t_pers_depense_categorie`;
+CREATE TABLE IF NOT EXISTS `t_pers_depense_categorie` (
+  `id_pers_depense_categorie` int NOT NULL AUTO_INCREMENT,
+  `fk_personne` int DEFAULT NULL,
+  `fk_categorie` int DEFAULT NULL,
+  PRIMARY KEY (`id_pers_depense_categorie`),
+  KEY `fk_personne` (`fk_personne`),
+  KEY `fk_categorie` (`fk_categorie`),
+  CONSTRAINT `FK_categorie` FOREIGN KEY (`fk_categorie`) REFERENCES `t_categorie` (`id_categorie`),
+  CONSTRAINT `FK_personne` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_personne`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Les données exportées n'étaient pas sélectionnées.
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

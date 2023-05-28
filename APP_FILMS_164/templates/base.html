@@ -38,7 +38,7 @@
 <div class="container">
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-secondary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="{{ url_for('mapageprincipale') }}">MOD 164 OM EPSIC</a>
+			<a class="navbar-brand" href="{{ url_for('mapageprincipale') }}">Gestion de dépense</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -46,22 +46,22 @@
 				<ul class="navbar-nav">
 					<li class="nav-item">
 						<!--		Afficher la liste des genres dans l'ordre (ASC) et tous les genres (0)-->
-						<a class="nav-link" href="{{ url_for('genres_afficher', order_by='ASC', id_genre_sel=0) }}">Genres</a>
+						<a class="nav-link" href="{{ url_for('genres_ajouter_wtf', order_by='ASC', id_genre_sel=0) }}">ajouter une dépenses</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navdropdownfilms" role="button"
 						   data-bs-toggle="dropdown" aria-expanded="false">
-							Films
+							Dépenses
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-							<li><a class="nav-link" href="{{ url_for('films_genres_afficher', id_film_sel=0) }}">Films</a>
+							<li><a class="nav-link" href="{{ url_for('films_genres_afficher', id_film_sel=0) }}">Mensuel</a>
 							</li>
-							<li><a class="nav-link" href="{{ url_for('films_genres_afficher', id_film_sel=0) }}">Films/Genres</a></li>
+							<li><a class="nav-link" href="{{ url_for('films_genres_afficher', id_film_sel=0) }}">Annuel</a></li>
 						</ul>
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('personnes_taille_dict') }}">Démo "TAILLE"</a>
+						<a class="nav-link" href="{{ url_for('genres_afficher', order_by='ASC', id_genre_sel=0) }}">Categories</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('route_hommage_a_u_x_V_ictim_es_du_monstre_du_mod_1_6_4') }}">Route "essai"</a>
