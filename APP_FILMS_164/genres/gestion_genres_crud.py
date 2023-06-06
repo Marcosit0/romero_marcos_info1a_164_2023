@@ -165,14 +165,14 @@ def genre_update_wtf():
             name_genre_update = name_genre_update.lower()
             date_genre_essai = form_update.date_genre_wtf_essai.data
 
-            valeur_update_dictionnaire = {"value_id_categorie": id_genre_update,
+            valeur_update_dictionnaire = {"value_id_genre": id_genre_update,
                                           "value_name_categorie": name_genre_update,
-                                          "value_date_ins_categorie": date_genre_essai
+                                          "value_date_genre_essai": date_genre_essai
                                           }
             print("valeur_update_dictionnaire ", valeur_update_dictionnaire)
 
-            str_sql_update_intitulegenre = """UPDATE t_categorie SET nom_categorie = %(value_name_genre)s, 
-            date_ins_categorie = %(value_date_genre_essai)s WHERE id_categorie = %(value_id_categorie)s """
+            str_sql_update_intitulegenre = """UPDATE t_categorie SET nom_categorie = %(value_name_categorie)s, 
+            date_ins_categorie = %(value_date_genre_essai)s WHERE id_categorie = %(value_id_genre)s """
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_intitulegenre, valeur_update_dictionnaire)
 
@@ -225,7 +225,7 @@ def genre_update_wtf():
 def genre_delete_wtf():
     data_films_attribue_genre_delete = None
     btn_submit_del = None
-    # L'utilisateur vient de cliquer sur le bouton "DELETE". Récupère la valeur de "id_genre"
+    # L'utilisateur vient de cliquer sur le bouton "DELETE". Récupère la valeur de "id_categorie"
     id_genre_delete = request.values['id_genre_btn_delete_html']
 
     # Objet formulaire pour effacer le genre sélectionné.
