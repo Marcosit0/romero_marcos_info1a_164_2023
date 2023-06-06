@@ -41,9 +41,20 @@ USE `marcos_romero_info1a_m164`;
 DROP TABLE IF EXISTS `t_categorie`;
 CREATE TABLE IF NOT EXISTS `t_categorie` (
   `id_categorie` int NOT NULL AUTO_INCREMENT,
-  `nom_categorie` varchar(50) DEFAULT NULL,
+  `nom_categorie` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_ins_categorie` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Les données exportées n'étaient pas sélectionnées.
+
+-- Listage de la structure de table marcos_romero_info1a_m164. t_mois
+DROP TABLE IF EXISTS `t_mois`;
+CREATE TABLE IF NOT EXISTS `t_mois` (
+  `id_mois` int NOT NULL AUTO_INCREMENT,
+  `nom_mois` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id_mois`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
 
@@ -51,23 +62,43 @@ CREATE TABLE IF NOT EXISTS `t_categorie` (
 DROP TABLE IF EXISTS `t_personne`;
 CREATE TABLE IF NOT EXISTS `t_personne` (
   `id_personne` int NOT NULL AUTO_INCREMENT,
+  `nom_personne` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_personne`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Les données exportées n'étaient pas sélectionnées.
+
+-- Listage de la structure de table marcos_romero_info1a_m164. t_pers_depense_categorie_moyenne
+DROP TABLE IF EXISTS `t_pers_depense_categorie_moyenne`;
+CREATE TABLE IF NOT EXISTS `t_pers_depense_categorie_moyenne` (
+  `id_pers_depense_categorie` int NOT NULL AUTO_INCREMENT,
+  `fk_personne` int DEFAULT NULL,
+  `fk_categorie` int DEFAULT NULL,
+  `moyenne_mensuelle` int DEFAULT NULL,
+  `moyenne_annuelle` int DEFAULT NULL,
+  PRIMARY KEY (`id_pers_depense_categorie`),
+  KEY `fk_personne` (`fk_personne`),
+  KEY `fk_categorie` (`fk_categorie`),
+  CONSTRAINT `FK_categorie` FOREIGN KEY (`fk_categorie`) REFERENCES `t_categorie` (`id_categorie`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_personne` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_personne`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
 
--- Listage de la structure de table marcos_romero_info1a_m164. t_pers_depense_categorie
-DROP TABLE IF EXISTS `t_pers_depense_categorie`;
-CREATE TABLE IF NOT EXISTS `t_pers_depense_categorie` (
-  `id_pers_depense_categorie` int NOT NULL AUTO_INCREMENT,
+-- Listage de la structure de table marcos_romero_info1a_m164. t_pers_depense_reel_categorie
+DROP TABLE IF EXISTS `t_pers_depense_reel_categorie`;
+CREATE TABLE IF NOT EXISTS `t_pers_depense_reel_categorie` (
+  `id_pers_dep_reel_cat` int NOT NULL AUTO_INCREMENT,
   `fk_personne` int DEFAULT NULL,
   `fk_categorie` int DEFAULT NULL,
-  PRIMARY KEY (`id_pers_depense_categorie`),
+  `montant_reel` int DEFAULT NULL,
+  `date_ins_reel` date DEFAULT NULL,
+  PRIMARY KEY (`id_pers_dep_reel_cat`),
   KEY `fk_personne` (`fk_personne`),
   KEY `fk_categorie` (`fk_categorie`),
-  CONSTRAINT `FK_categorie` FOREIGN KEY (`fk_categorie`) REFERENCES `t_categorie` (`id_categorie`),
-  CONSTRAINT `FK_personne` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_personne`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_categorie_reel` FOREIGN KEY (`fk_categorie`) REFERENCES `t_categorie` (`id_categorie`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_personne_reel` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_personne`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Les données exportées n'étaient pas sélectionnées.
 
