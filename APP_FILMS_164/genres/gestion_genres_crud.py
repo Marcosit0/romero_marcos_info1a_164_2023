@@ -203,7 +203,7 @@ def genre_update_wtf():
                                       f"{genre_update_wtf.__name__} ; "
                                       f"{Exception_genre_update_wtf}")
 
-    return render_template("/genres/genre_update_wtf.html", form_update=form_update)
+    return render_template("genres/genre_update_wtf.html", form_update=form_update)
 
 
 """
