@@ -156,9 +156,10 @@ def genre_update_wtf():
     # Objet formulaire pour l'UPDATE
     form_update = FormWTFUpdateGenre()
     try:
-        print(" on submit ", form_update.validate_on_submit())
-        if form_update.validate_on_submit():
-            # Récupèrer la valeur du champ depuis "personne_update_wtf.html" après avoir cliqué sur "SUBMIT".
+        # 2023.05.14 OM S'il y a des listes déroulantes dans le formulaire
+        # La validation pose quelques problèmes
+        if request.method == "POST" and form_update.submit.data:
+            # Récupèrer la valeur du champ depuis "genre_update_wtf.html" après avoir cliqué sur "SUBMIT".
             # Puis la convertir en lettres minuscules.
             name_genre_update = form_update.nom_genre_update_wtf.data
             name_genre_update = name_genre_update.lower()
@@ -171,7 +172,7 @@ def genre_update_wtf():
             print("valeur_update_dictionnaire ", valeur_update_dictionnaire)
 
             str_sql_update_intitulegenre = """UPDATE t_categorie SET nom_categorie = %(value_name_genre)s, 
-            date_ins_categorie = %(value_date_genre_essai)s WHERE id_categorie = %(value_id_genre)s """
+            date_ins_categorie = %(value_date_genre_essai)s WHERE id_categorie = %(value_id_categorie)s """
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_intitulegenre, valeur_update_dictionnaire)
 
