@@ -107,7 +107,7 @@ def film_update_wtf():
                                                             date_sortie_film = %(value_datesortie_film)s
                                                             FROM t_pers_depense_reel_categorie
                                                             INNER JOIN t_categorie ON t_pers_depense_reel_categorie.fk_categorie = t_categorie.id_categorie
-                                                            WHERE id_categorie = %(value_id_categorie)s"""
+                                                            WHERE id_film = %(value_id_film)s"""
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_nom_film, valeur_update_dictionnaire)
 
