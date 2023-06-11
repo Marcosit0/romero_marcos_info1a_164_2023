@@ -35,8 +35,8 @@ def films_genres_afficher(id_film_sel):
                 strsql_genres_films_afficher_data = """SELECT
   YEAR(t.date_ins_reel) AS annee,
   MONTH(t.date_ins_reel) AS mois,
-  c.id_categorie,
-  c.nom_categorie,
+  p.id_personne,
+  p.nom_personne,
   t.montant_reel,
   t_total.total_depenses,
   t_sum.total_general,
@@ -44,6 +44,7 @@ def films_genres_afficher(id_film_sel):
 FROM
   t_pers_depense_reel_categorie t
 INNER JOIN t_categorie c ON t.fk_categorie = c.id_categorie
+INNER JOIN t_personne p ON t.fk_personne = p.id_personne
 INNER JOIN
   (
     SELECT
@@ -71,7 +72,7 @@ CROSS JOIN
       MONTH(date_ins_reel)
   ) t_sum ON YEAR(t.date_ins_reel) = t_sum.annee AND MONTH(t.date_ins_reel) = t_sum.mois
 GROUP BY
-  annee, mois, c.id_categorie, t.montant_reel, t_total.total_depenses, t_sum.total_general, date_ins_reel;
+  annee, mois, p.id_personne, t.montant_reel, t_total.total_depenses, t_sum.total_general, date_ins_reel;
 """
                 if id_film_sel == 0:
                     # le paramètre 0 permet d'afficher tous les films
@@ -163,14 +164,14 @@ def edit_genre_film_selected():
 
             # Dans le composant "tags-selector-tagselect" on doit connaître
             # les genres qui ne sont pas encore sélectionnés.
-            lst_data_genres_films_non_attribues = [item['id_genre'] for item in data_genres_films_non_attribues]
+            lst_data_genres_films_non_attribues = [item['id_categorie'] for item in data_genres_films_non_attribues]
             session['session_lst_data_genres_films_non_attribues'] = lst_data_genres_films_non_attribues
             print("lst_data_genres_films_non_attribues  ", lst_data_genres_films_non_attribues,
                   type(lst_data_genres_films_non_attribues))
 
             # Dans le composant "tags-selector-tagselect" on doit connaître
             # les genres qui sont déjà sélectionnés.
-            lst_data_genres_films_old_attribues = [item['id_film'] for item in data_genres_films_attribues]
+            lst_data_genres_films_old_attribues = [item['id_categorie'] for item in data_genres_films_attribues]
             session['session_lst_data_genres_films_old_attribues'] = lst_data_genres_films_old_attribues
             print("lst_data_genres_films_old_attribues  ", lst_data_genres_films_old_attribues,
                   type(lst_data_genres_films_old_attribues))
@@ -183,7 +184,7 @@ def edit_genre_film_selected():
 
             # Extrait les valeurs contenues dans la table "t_genres", colonne "intitule_genre"
             # Le composant javascript "tagify" pour afficher les tags n'a pas besoin de l'id_genre
-            lst_data_genres_films_non_attribues = [item['nom_film'] for item in data_genres_films_non_attribues]
+            lst_data_genres_films_non_attribues = [item['nom_categorie'] for item in data_genres_films_non_attribues]
             print("lst_all_genres gf_edit_genre_film_selected ", lst_data_genres_films_non_attribues,
                   type(lst_data_genres_films_non_attribues))
 
@@ -312,22 +313,47 @@ def genres_films_afficher_data(valeur_id_film_selected_dict):
     print("valeur_id_film_selected_dict...", valeur_id_film_selected_dict)
     try:
 
-        strsql_film_selected = """SELECT * FROM t_pers_depense_reel_categorie
-                                        INNER JOIN t_categorie ON t_pers_depense_reel_categorie.fk_categorie = t_categorie.id_categorie                                       
-                                        WHERE id_t_pers_depense_reel_categorie = %(value_id_film_selected)s"""
+        strsql_film_selected = """SELECT 
+    id_personne,
+    nom_personne,
+    montant_reel,
+    (SELECT SUM(montant_reel) 
+     FROM t_pers_depense_reel_categorie 
+     WHERE fk_personne = t_personne.id_personne) AS total_depenses,
+    (SELECT SUM(montant_reel) 
+     FROM t_pers_depense_reel_categorie) AS total_general,
+    t_pers_depense_reel_categorie.date_ins_reel,
+    GROUP_CONCAT(t_personne.id_personne) AS GenresFilms
+FROM 
+    t_pers_depense_reel_categorie
+INNER JOIN 
+    t_personne ON t_pers_depense_reel_categorie.fk_personne = t_personne.id_personne
+INNER JOIN 
+    t_categorie ON t_pers_depense_reel_categorie.fk_categorie = t_categorie.id_categorie
+WHERE 
+    id_personne = %(value_id_film_selected)s
+GROUP BY
+    t_personne.id_personne, 
+    t_personne.nom_personne,
+    t_pers_depense_reel_categorie.montant_reel,
+    t_pers_depense_reel_categorie.date_ins_reel;
+"""
 
+        strsql_genres_films_non_attribues = """SELECT id_categorie, nom_categorie FROM t_categorie WHERE id_categorie not in(SELECT id_categorie FROM t_pers_depense_reel_categorie
+                                                            INNER JOIN t_personne ON t_personne.id_personne = t_pers_depense_reel_categorie.fk_personne
+                                                            INNER JOIN t_categorie ON t_categorie.id_categorie = t_pers_depense_reel_categorie.fk_categorie
+                                                            WHERE id_personne = %(value_id_film_selected)s)"""
 
-
-        strsql_genres_films_attribues = """SELECT id_film, id_genre, intitule_genre FROM t_genre_film
-                                                   INNER JOIN t_film ON t_film.id_film = t_genre_film.fk_film
-                                                   INNER JOIN t_genre ON t_genre.id_genre = t_genre_film.fk_genre
-                                                   WHERE id_film = %(value_id_film_selected)s"""
+        strsql_genres_films_attribues = """SELECT id_personne, id_categorie, nom_categorie FROM t_pers_depense_reel_categorie
+                                                            INNER JOIN t_personne ON t_personne.id_personne = t_pers_depense_reel_categorie.fk_personne
+                                                            INNER JOIN t_categorie ON t_categorie.id_categorie = t_pers_depense_reel_categorie.fk_categorie
+                                                            WHERE id_personne = %(value_id_film_selected)s"""
 
 
         # Du fait de l'utilisation des "context managers" on accède au curseur grâce au "with".
         with DBconnection() as mc_afficher:
             # Envoi de la commande MySql
-            mc_afficher.execute(valeur_id_film_selected_dict)
+            mc_afficher.execute(strsql_genres_films_non_attribues, valeur_id_film_selected_dict)
             # Récupère les données de la requête.
             data_genres_films_non_attribues = mc_afficher.fetchall()
             # Affichage dans la console
