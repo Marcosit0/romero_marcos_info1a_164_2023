@@ -1,46 +1,80 @@
 #  Modul 164 - Marcos Romero - Gestionnaire de dépenses  
 
-#  Déscription de mon projet 
-Mon projet ce base sur l'économie des achats grâce à un gestionnaire de dépenses.
+# Quels sont les prérequis pour faire fonctionner mon projet ?
 
-Avec l'utilisation d'un système CRUD (Create Read Update Delete) complet sur 3 tables dont une table intermédiaire pour l'association d'une dépense à une catégorie.
+Un serveur MySql doit être installé
 
-# Que faut-il pour faire fonctionner mon projet ?
-Un serveur « MySQL » est nécessaire.
+- Laragon (ce que j'utilise) : https://laragon.org/download/index.html
 
-•	Laragon, XAMPP, UWAMP, phpMyAdmin, etc…
+- ou XAMPP : https://www.apachefriends.org/fr/download.html
 
-Le logiciel PyCharm.
+- ou UWAMP : https://www.uwamp.com/fr/?page=download
 
-•	PyCharm est un exemple mais ça peut-être n’importe quelle IDE compatible avec python
+- ou MAMP : https://www.mamp.info/en/downloads/
 
-Il vous faut « Git »
+Python doit être installé.
 
-•	https://gitforwindows.org/
+- ATTENTION : Cochez la case pour que le « PATH » intègre le programme Python
 
-# Pour faire fonctionner mon projet
+- Une fois la "case à cocher" du PATH cochée, il faut choisir d'installer
 
-•	Démarrez le serveur MySQL
+- Un peu avant la fin du processus d'installation, cliquer sur « Disabled length limit » et cliquer sur « CLOSE »
 
-•	Dans PyCharm importé la BD à partir du fichier dump
+- Le test de Python se fait après avec le programme "PyCharm"
 
-•	Ouvrez le fichier APP_FILMS_164/database/1_ImportationDumpSql.py
+Installateur "GIT"
 
-•	Run le fichier
+- https://gitforwindows.org/
 
-# Test de connexion de la BD
+- Le test de "GIT" se fait dans le programme "PyCharm"
 
-•	Ouvrez le fichier APP_FILMS_164/database/2_test_connection_bd.py
+# Configuration de PyCharm
 
-•	Run le fichier
+- Il faut installer "PyCharm" (communauté) et utiliser la même version IDE pour faire fonctionner le projet.
 
-# Démarrer le site web
+- Lors de l'installation, il faut cocher toutes les options ASSOCIATIONS, ADD PATH, etc.
 
-•	Dans le répertoire racine du projet, ouvrez le fichier run_mon_app.py
+- Ouvrir "PyCharm" pour la première fois pour le configurer. Choisir le bouton « Nouveau projet »
 
-•	Run le fichier
+- Changer le répertoire pour ce nouveau projet, il faut créer un nouveau répertoire "vide" sur votre disque en local.
 
-•	Dans la console « run », cliquer sur le lien : http://127.0.0.1:5005
+- Il est important d'avoir sélectionné le répertoire que vous venez de créer car "PyCharm" va automatiquement créer un environnement virtuel (venv) dans ce 
+répertoire
 
+- Menu : Fichier->Paramètres->Editeur->Général->Importation automatique (rubrique Python) cocher "Afficher l'info-bulle d'importation automatique"
 
+# PyCharm vient d'ouvrir une fenêtre avec le contenu de "main.py" pour configurer les actions "UNDO" et "REDO"
 
+- Sélectionnez tout le texte avec "CTRL-A" puis "CTRL-X" (Couper), puis "CTL-Z" (UNDO) et faites un REDO "CTRL-Y" et "PyCharm" va vous demander de choisir l'action du "CTRL-Y" raccourci pour faire un "REDO".
+
+# Guide pour faire fonctionner mon projet
+
+# Démarrez le serveur MySql (Laragon(heidi.sql), uwamp ou xamp ou mamp, etc.))
+
+- Dans « PyCharm », importateur MA BD à partir du fichier DUMP
+
+- Ouvrir le fichier APP_ETAM_164/database/1_ImportationDumpSql.py
+
+- Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
+
+# En cas d'erreur /!\
+
+- Ouvrir le fichier .env à la racine du projet, vérifier les indications de connexion pour la bd.
+
+# Test simple de la connexion à la BD
+
+- Ouvrir le fichier APP_BUREAU_164/database/2_test_connection_bd.py
+
+- Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
+
+# Démarrer le microframework FLASK
+
+- Dans le répertoire racine du projet, ouvrez le fichier run_mon_app.py
+
+- Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
+
+- Dans la console du « run », il doit y avoir un lien à cliquer de cette forme :
+
+-   Exécuté sur http://127.0.0.1:5005
+
+- Cliquer dessus afin d'ouvrir dans votre navigateur mon projet
