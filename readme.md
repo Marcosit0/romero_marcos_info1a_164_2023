@@ -1,4 +1,8 @@
-#  Modul 164 - Marcos Romero - Gestionnaire de dépenses  
+#  Modul 164 - Marcos Romero - Gestionnaire de dépenses 
+
+Il s'agit d'un géstionnaire de dépense.
+
+Avec l'utilisation un système CRUD (Create Read Update Delete) complet sur 3 tables dont une table intermédiaire pour l'association des dépense à une catégorie.
 
 # Quels sont les prérequis pour faire fonctionner mon projet ?
 
