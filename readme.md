@@ -17,11 +17,3 @@ Le logiciel PyCharm.
 Il vous faut « Git »
 
 •	https://gitforwindows.org/
-
-
-
-
-
-Le mode d'emploi et vos devoirs se trouvent à l'adresse suivante.
-
-https://info164.github.io/doc164ver1/index.html
