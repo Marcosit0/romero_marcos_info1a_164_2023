@@ -4,7 +4,7 @@
 
 """
 
-from APP_DEPENSE_164.erreurs.exceptions import ErreurFichierSqlDump
+from APP_DEPENSES_164.erreurs.exceptions import ErreurFichierSqlDump
 
 
 def myfunction(a, b):
