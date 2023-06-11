@@ -44,7 +44,7 @@ class FormWTFUpdateGenre(FlaskForm):
                                                                           ])
     date_genre_wtf_essai = DateField("Essai date", validators=[InputRequired("Date obligatoire"),
                                                                DataRequired("Date non valide")])
-    submit = SubmitField("Update genre")
+    submit = SubmitField("Update catégorie")
 
 
 class FormWTFDeleteGenre(FlaskForm):
@@ -56,7 +56,7 @@ class FormWTFDeleteGenre(FlaskForm):
         submit_btn_conf_del : Bouton de confirmation pour effacer un "genre".
         submit_btn_annuler : Bouton qui permet d'afficher la table "t_genre".
     """
-    nom_genre_delete_wtf = StringField("Effacer ce genre")
-    submit_btn_del = SubmitField("Effacer genre")
+    nom_genre_delete_wtf = StringField("Effacer cette catégorie")
+    submit_btn_del = SubmitField("Effacer catégorie")
     submit_btn_conf_del = SubmitField("Etes-vous sur d'effacer ?")
     submit_btn_annuler = SubmitField("Annuler")
