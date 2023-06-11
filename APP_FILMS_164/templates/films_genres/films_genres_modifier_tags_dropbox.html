@@ -30,14 +30,9 @@
 
 <div class="container">
 		<div class="col-md-12">
-			<p>
-				Tagselect, c'est une DROPBOX qui surgit quand on sélectionne l'espace "TAGS". Pour votre information, le composant TAGSELECT est à disposition sur ce site :
-                 <a href="https://www.jqueryscript.net/form/tags-selector-tagselect.html"
-                    target="_blank">https://www.jqueryscript.net/form/tags-selector-tagselect.html</a>
 
-			</p>
             <p>
-                Films.
+                Dépense.
             </p>
             <table class="table table-responsive-sm">
                 {% if data_film_selected %}
@@ -47,20 +42,15 @@
                                 id
                             </th>
                             <th class="">
-                                Titre
+                                Personne
                             </th>
                             <th class="">
-                                Durée
+                                Montant_reel
                             </th>
                             <th class="">
                                 Date sortie
                             </th>
-                            <th class="">
-                                Description
-                            </th>
-                            <th class="">
-                                Affiche
-                            </th>
+
                         </tr>
                     </thead>
             {% endif %}
@@ -69,30 +59,22 @@
 				<tbody>
 					<tr>
 						<td class="align-middle">
-							{{ row.id_film }}
+							{{ row.id_personne }}
 						</td>
 						<td class="align-middle">
-							{{ row.nom_film }}
+							{{ row.nom_personne }}
 						</td>
 						<td class="align-middle">
-							{{ row.montant_reel|default("", True) }}
+							{{ row.montant_reel }}
 						</td>
-						<td class="align-middle">
-							{{ row.date_sortie_film|default("", True) }}
-						</td>
-						<td class="align-middle">
-							{{ row.description_film|default("", True) }}
-						</td>
-						<td class="align-middle">
-                            <img class="img" src={{ row.cover_link_film|default(None, True) }} style="border: 0;display:block; width:150px; max-height:auto;" alt = "image masquée FFP67 (in COVID-29 Memory) (absente) mod 164">
-						</td>
+
 					</tr>
 				</tbody>
             {% else %}
 				<tbody>
 					<tr>
 						<td>
-							Aucune dépense.
+
 						</td>
 						<td>
 							<a class="btn btn-primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a>
@@ -112,11 +94,11 @@
                 <div class="qtagselect isw360">
                     <select id="OM_JTSD" name="name_select_tags" class="qtagselect__select" multiple>
                         {% for row in data_genres_non_attribues %}
-                            <option value="{{ row.id_genre }}" name="name_tags_non_attribues_html" class="isblue" >{{ row.nom_categorie }}</option>
+                            <option value="{{ row.id_categorie }}" name="name_tags_non_attribues_html" class="isblue" >{{ row.id_categorie }}</option>
                         {% endfor %}
 
                         {% for row in data_genres_attribues %}
-                            <option value="{{ row.id_genre }}" name="name_tags_attribues_html" class="ispurple" selected>{{ row.nom_categorie }}</option>
+                            <option value="{{ row.id_categorie }}" name="name_tags_attribues_html" class="ispurple" selected>{{ row.id_categorie }}</option>
                         {% endfor %}
                     </select>
                 </div>

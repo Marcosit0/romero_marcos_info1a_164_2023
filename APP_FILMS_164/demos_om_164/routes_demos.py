@@ -12,7 +12,7 @@ from APP_FILMS_164.erreurs.exceptions import *
 
 @app.route('/index')
 def index():
-    return "Hello, le MONDE du Module 164 !"
+    return "Salut Maccaud, salut tout le monde ! je veux que vous compreniez que j'ai voulu partir sur une base de gestionnaire de dépense et j'aurais pas du... parce que ducoup tout change. C'est plus qu'un jeu de différence comme vous aimez le dire. Merci de votre compréhension."
 
 
 @app.route('/')

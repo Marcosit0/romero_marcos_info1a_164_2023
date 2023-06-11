@@ -104,11 +104,9 @@ def film_update_wtf():
             str_sql_update_nom_film = """UPDATE t_personne SET nom_personne = %(value_nom_personne)s,
                                                             montant_reel = %(value_montant_reel)s,
                                                             total_depenses = %(value_total_depenses)s,
-                                                            cover_link_film = %(value_cover_link_film)s,
-                                                            date_sortie_film = %(value_datesortie_film)s
                                                             FROM t_pers_depense_reel_categorie
                                                             INNER JOIN t_categorie ON t_pers_depense_reel_categorie.fk_categorie = t_categorie.id_categorie
-                                                            WHERE id_film = %(value_id_film)s"""
+                                                            WHERE id_personne = %(value_id_film)s"""
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_nom_film, valeur_update_dictionnaire)
 

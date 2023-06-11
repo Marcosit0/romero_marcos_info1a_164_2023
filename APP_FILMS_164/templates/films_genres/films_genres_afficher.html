@@ -38,16 +38,16 @@
 						{{ row.nom_personne }}
 					  </th>
 					  <th class="align-middle">
-						{{ row.montant_reel|default("", True) }}
+						{{ row.montant_reel }}
 					  </th>
 					  <th class="align-middle">
-						{{ row.total_depenses|default("", True) }}
+						{{ row.total_depenses }}
 					  </th>
 					  <th class="align-middle">
-						{{ row.total_general|default("", True) }}
+						{{ row.total_general }}
 					  </th>
 					  <th class="align-middle">
-						{{ row.date_ins_reel|default("", True) }}
+						{{ row.date_ins_reel }}
 					  </th>
 					  <th class="align-middle">
 						<a class="btn btn-primary" href="{{ url_for('film_add_wtf') }}" role="button">Ajouter</a>
@@ -72,7 +72,7 @@
 				<tbody>
 					<tr>
 						<td>
-							Aucun film.
+							Aucune dépense.
 						</td>
 						<td>
 							<a class="btn btn-primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a>
