@@ -20,6 +20,8 @@ Il vous faut « Git »
 
 # Pour faire fonctionner mon projet
 
+•	Démarrez le serveur MySQL
+
 •	Dans PyCharm importé la BD à partir du fichier dump
 
 •	Ouvrez le fichier APP_FILMS_164/database/1_ImportationDumpSql.py
@@ -39,4 +41,6 @@ Il vous faut « Git »
 •	Run le fichier
 
 •	Dans la console « run », cliquer sur le lien : http://127.0.0.1:5005
+
+
 
