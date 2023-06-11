@@ -4,6 +4,9 @@ Il s'agit d'un géstionnaire de dépense.
 
 Avec l'utilisation un système CRUD (Create Read Update Delete) complet sur 3 tables dont une table intermédiaire pour l'association des dépense à une catégorie.
 
+# Avertissement
+N'ayant pas réussi à finaliser le code, on peut pas ajouter des dépense depuis le site web. C'est pourquoi, il vous faudra avoir un serveur MySql installé afin de modifier depuis celui-ci les dépenses par catégorie.
+
 # Quels sont les prérequis pour faire fonctionner mon projet ?
 
 Un serveur MySql doit être installé
