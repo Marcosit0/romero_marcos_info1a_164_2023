@@ -1,4 +1,4 @@
-#  Modul 164 - Marcos Romero - Gestionnaire de dépenes
+#  Modul 164 - Marcos Romero - Gestionnaire de dépenses  
 
 
 Le "début de la fin"
