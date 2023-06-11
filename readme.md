@@ -8,11 +8,7 @@ Avec l'utilisation d'un système CRUD (Create Read Update Delete) complet sur 3 
 # Que faut-il pour faire fonctionner mon projet ?
 Il vous faut un serveur "MySQL"
 
-AZEEEEEEEE
 
-•	Serveur my sql
-
-•	as
 
 
 Le mode d'emploi et vos devoirs se trouvent à l'adresse suivante.
