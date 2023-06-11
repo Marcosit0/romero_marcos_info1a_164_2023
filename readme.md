@@ -57,7 +57,7 @@ répertoire
 
 - Dans « PyCharm », importateur MA BD à partir du fichier DUMP
 
-- Ouvrir le fichier APP_ETAM_164/database/1_ImportationDumpSql.py
+- Ouvrir le fichier APP_DEPENSE_164/database/1_ImportationDumpSql.py
 
 - Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
 
@@ -67,7 +67,7 @@ répertoire
 
 # Test simple de la connexion à la BD
 
-- Ouvrir le fichier APP_BUREAU_164/database/2_test_connection_bd.py
+- Ouvrir le fichier APP_DEPENSE_164/database/2_test_connection_bd.py
 
 - Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
 
