@@ -37,10 +37,11 @@ def film_add_wtf():
             if form_add_film.validate_on_submit():
                 nom_film_add = form_add_film.nom_film_add_wtf.data
 
-                valeurs_insertion_dictionnaire = {"value_nom_film": nom_film_add}
+                valeurs_insertion_dictionnaire = {"value_nom_film": nom_film_add
+                                                  }
                 print("valeurs_insertion_dictionnaire ", valeurs_insertion_dictionnaire)
 
-                strsql_insert_film = """INSERT INTO t_pers_depense_reel_categorie (id_pers_depense_reel_categorie, montant_reel) VALUES (NULL,%(value_nom_film)s) """
+                strsql_insert_film = """INSERT INTO t_personne (id_personne, nom_personne) VALUES (NULL,%(value_nom_personne)s) """
                 with DBconnection() as mconn_bd:
                     mconn_bd.execute(strsql_insert_film, valeurs_insertion_dictionnaire)
 
@@ -92,7 +93,7 @@ def film_update_wtf():
             datesortie_film_update = form_update_film.datesortie_film_update_wtf.data
 
             valeur_update_dictionnaire = {"value_id_film": id_film_update,
-                                          "value_nom_categorie": nom_film_update,
+                                          "value_nom_personne": nom_film_update,
                                           "value_montant_reel": duree_film_update,
                                           "value_total_depenses": description_film_update,
                                           "value_cover_link_film": cover_link_film_update,
@@ -100,7 +101,7 @@ def film_update_wtf():
                                           }
             print("valeur_update_dictionnaire ", valeur_update_dictionnaire)
 
-            str_sql_update_nom_film = """UPDATE t_categorie SET nom_categorie = %(value_nom_categorie)s,
+            str_sql_update_nom_film = """UPDATE t_personne SET nom_personne = %(value_nom_personne)s,
                                                             montant_reel = %(value_montant_reel)s,
                                                             total_depenses = %(value_total_depenses)s,
                                                             cover_link_film = %(value_cover_link_film)s,

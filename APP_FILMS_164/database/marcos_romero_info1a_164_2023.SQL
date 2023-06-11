@@ -1,20 +1,20 @@
 -- OM 2021.02.17
 -- FICHIER MYSQL POUR FAIRE FONCTIONNER LES EXEMPLES
 -- DE REQUETES MYSQL
--- Database: marcos_romero_info1a_m164
+-- Database: marcos_romero_info1a_164_2023
 
 -- Destruction de la BD si elle existe.
 -- Pour être certain d'avoir la dernière version des données
 
-DROP DATABASE IF EXISTS marcos_romero_info1a_m164;
+DROP DATABASE IF EXISTS marcos_romero_info1a_164_2023;
 
 -- Création d'un nouvelle base de donnée
 
-CREATE DATABASE IF NOT EXISTS marcos_romero_info1a_m164;
+CREATE DATABASE IF NOT EXISTS marcos_romero_info1a_164_2023;
 
 -- Utilisation de cette base de donnée
 
-USE marcos_romero_info1a_m164;
+USE marcos_romero_info1a_164_2023;
 -- --------------------------------------------------------
 -- Hôte:                         127.0.0.1
 -- Version du serveur:           8.0.30 - MySQL Community Server - GPL
@@ -32,23 +32,23 @@ USE marcos_romero_info1a_m164;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Listage de la structure de la base pour marcos_romero_info1a_m164
-DROP DATABASE IF EXISTS `marcos_romero_info1a_m164`;
-CREATE DATABASE IF NOT EXISTS `marcos_romero_info1a_m164` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `marcos_romero_info1a_m164`;
+-- Listage de la structure de la base pour marcos_romero_info1a_164_2023
+DROP DATABASE IF EXISTS `marcos_romero_info1a_164_2023`;
+CREATE DATABASE IF NOT EXISTS `marcos_romero_info1a_164_2023` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `marcos_romero_info1a_164_2023`;
 
--- Listage de la structure de table marcos_romero_info1a_m164. t_categorie
+-- Listage de la structure de table marcos_romero_info1a_164_2023. t_categorie
 DROP TABLE IF EXISTS `t_categorie`;
 CREATE TABLE IF NOT EXISTS `t_categorie` (
   `id_categorie` int NOT NULL AUTO_INCREMENT,
   `nom_categorie` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `date_ins_categorie` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table marcos_romero_info1a_m164.t_categorie : ~8 rows (environ)
+-- Listage des données de la table marcos_romero_info1a_164_2023.t_categorie : ~9 rows (environ)
 INSERT INTO `t_categorie` (`id_categorie`, `nom_categorie`, `date_ins_categorie`) VALUES
-	(1, 'Vetement', '2023-06-06 14:34:49'),
+	(1, 'vetements', '2023-06-06 00:00:00'),
 	(2, 'Nourriture', '2023-06-06 12:46:12'),
 	(3, 'Assurances', '2023-06-06 12:47:15'),
 	(4, 'Loisirs', '2023-06-06 12:47:21'),
@@ -57,7 +57,7 @@ INSERT INTO `t_categorie` (`id_categorie`, `nom_categorie`, `date_ins_categorie`
 	(7, 'Voiture', '2023-06-06 12:55:30'),
 	(8, 'Impots', '2023-06-06 12:55:50');
 
--- Listage de la structure de table marcos_romero_info1a_m164. t_mois
+-- Listage de la structure de table marcos_romero_info1a_164_2023. t_mois
 DROP TABLE IF EXISTS `t_mois`;
 CREATE TABLE IF NOT EXISTS `t_mois` (
   `id_mois` int NOT NULL AUTO_INCREMENT,
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `t_mois` (
   PRIMARY KEY (`id_mois`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table marcos_romero_info1a_m164.t_mois : ~12 rows (environ)
+-- Listage des données de la table marcos_romero_info1a_164_2023.t_mois : ~12 rows (environ)
 INSERT INTO `t_mois` (`id_mois`, `nom_mois`) VALUES
 	(1, 'Janvier'),
 	(2, 'Fevrier'),
@@ -80,7 +80,7 @@ INSERT INTO `t_mois` (`id_mois`, `nom_mois`) VALUES
 	(11, 'Novembre'),
 	(12, 'Decembre');
 
--- Listage de la structure de table marcos_romero_info1a_m164. t_personne
+-- Listage de la structure de table marcos_romero_info1a_164_2023. t_personne
 DROP TABLE IF EXISTS `t_personne`;
 CREATE TABLE IF NOT EXISTS `t_personne` (
   `id_personne` int NOT NULL AUTO_INCREMENT,
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `t_personne` (
   PRIMARY KEY (`id_personne`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table marcos_romero_info1a_m164.t_personne : ~5 rows (environ)
+-- Listage des données de la table marcos_romero_info1a_164_2023.t_personne : ~5 rows (environ)
 INSERT INTO `t_personne` (`id_personne`, `nom_personne`) VALUES
 	(1, 'Famille'),
 	(2, 'Papa'),
@@ -96,7 +96,7 @@ INSERT INTO `t_personne` (`id_personne`, `nom_personne`) VALUES
 	(4, 'Frère'),
 	(5, 'Soeur');
 
--- Listage de la structure de table marcos_romero_info1a_m164. t_pers_depense_categorie_moyenne
+-- Listage de la structure de table marcos_romero_info1a_164_2023. t_pers_depense_categorie_moyenne
 DROP TABLE IF EXISTS `t_pers_depense_categorie_moyenne`;
 CREATE TABLE IF NOT EXISTS `t_pers_depense_categorie_moyenne` (
   `id_pers_depense_categorie` int NOT NULL AUTO_INCREMENT,
@@ -111,9 +111,9 @@ CREATE TABLE IF NOT EXISTS `t_pers_depense_categorie_moyenne` (
   CONSTRAINT `FK_personne` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_personne`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table marcos_romero_info1a_m164.t_pers_depense_categorie_moyenne : ~0 rows (environ)
+-- Listage des données de la table marcos_romero_info1a_164_2023.t_pers_depense_categorie_moyenne : ~0 rows (environ)
 
--- Listage de la structure de table marcos_romero_info1a_m164. t_pers_depense_reel_categorie
+-- Listage de la structure de table marcos_romero_info1a_164_2023. t_pers_depense_reel_categorie
 DROP TABLE IF EXISTS `t_pers_depense_reel_categorie`;
 CREATE TABLE IF NOT EXISTS `t_pers_depense_reel_categorie` (
   `id_pers_dep_reel_cat` int NOT NULL AUTO_INCREMENT,
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `t_pers_depense_reel_categorie` (
   CONSTRAINT `fk_personne_reel` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_personne`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table marcos_romero_info1a_m164.t_pers_depense_reel_categorie : ~9 rows (environ)
+-- Listage des données de la table marcos_romero_info1a_164_2023.t_pers_depense_reel_categorie : ~9 rows (environ)
 INSERT INTO `t_pers_depense_reel_categorie` (`id_pers_dep_reel_cat`, `fk_personne`, `fk_categorie`, `montant_reel`, `date_ins_reel`) VALUES
 	(1, 1, 1, 30, '2023-06-06 14:53:02'),
 	(2, 1, 2, 55, '2023-06-06 14:53:00'),
