@@ -5,9 +5,9 @@
 """
 
 from flask import render_template
-from APP_DEPENSES_164 import app
-from APP_DEPENSES_164.erreurs.msg_erreurs import *
-from APP_DEPENSES_164.erreurs.exceptions import *
+from APP_DEPENSE_164 import app
+from APP_DEPENSE_164.erreurs.msg_erreurs import *
+from APP_DEPENSE_164.erreurs.exceptions import *
 
 
 @app.route('/index')
