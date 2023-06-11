@@ -1,46 +1,87 @@
-#  Modul 164 - Marcos Romero - Gestionnaire de dépenses  
+#  Modul 164 - Marcos Romero - Gestionnaire de dépenses 
 
-#  Déscription de mon projet 
-Mon projet ce base sur l'économie des achats grâce à un gestionnaire de dépenses.
+Il s'agit d'un géstionnaire de dépense.
 
-Avec l'utilisation d'un système CRUD (Create Read Update Delete) complet sur 3 tables dont une table intermédiaire pour l'association d'une dépense à une catégorie.
+Avec l'utilisation un système CRUD (Create Read Update Delete) complet sur 3 tables dont une table intermédiaire pour l'association des dépense à une catégorie.
 
-# Que faut-il pour faire fonctionner mon projet ?
-Un serveur « MySQL » est nécessaire.
+# Avertissement
+N'ayant pas réussi à finaliser le code, on peut pas ajouter des dépense depuis le site web. C'est pourquoi, il vous faudra avoir un serveur MySql installé afin de modifier depuis celui-ci les dépenses par catégorie.
 
-•	Laragon, XAMPP, UWAMP, phpMyAdmin, etc…
+# Quels sont les prérequis pour faire fonctionner mon projet ?
 
-Le logiciel PyCharm.
+Un serveur MySql doit être installé
 
-•	PyCharm est un exemple mais ça peut-être n’importe quelle IDE compatible avec python
+- Laragon (ce que j'utilise) : https://laragon.org/download/index.html
 
-Il vous faut « Git »
+- ou XAMPP : https://www.apachefriends.org/fr/download.html
 
-•	https://gitforwindows.org/
+- ou UWAMP : https://www.uwamp.com/fr/?page=download
 
-# Pour faire fonctionner mon projet
+- ou MAMP : https://www.mamp.info/en/downloads/
 
-•	Démarrez le serveur MySQL
+Python doit être installé.
 
-•	Dans PyCharm importé la BD à partir du fichier dump
+- ATTENTION : Cochez la case pour que le « PATH » intègre le programme Python
 
-•	Ouvrez le fichier APP_FILMS_164/database/1_ImportationDumpSql.py
+- Une fois la "case à cocher" du PATH cochée, il faut choisir d'installer
 
-•	Run le fichier
+- Un peu avant la fin du processus d'installation, cliquer sur « Disabled length limit » et cliquer sur « CLOSE »
 
-# Test de connexion de la BD
+- Le test de Python se fait après avec le programme "PyCharm"
 
-•	Ouvrez le fichier APP_FILMS_164/database/2_test_connection_bd.py
+Installateur "GIT"
 
-•	Run le fichier
+- https://gitforwindows.org/
 
-# Démarrer le site web
+- Le test de "GIT" se fait dans le programme "PyCharm"
 
-•	Dans le répertoire racine du projet, ouvrez le fichier run_mon_app.py
+# Configuration de PyCharm
 
-•	Run le fichier
+- Il faut installer "PyCharm" (communauté) et utiliser la même version IDE pour faire fonctionner le projet.
 
-•	Dans la console « run », cliquer sur le lien : http://127.0.0.1:5005
+- Lors de l'installation, il faut cocher toutes les options ASSOCIATIONS, ADD PATH, etc.
 
+- Ouvrir "PyCharm" pour la première fois pour le configurer. Choisir le bouton « Nouveau projet »
 
+- Changer le répertoire pour ce nouveau projet, il faut créer un nouveau répertoire "vide" sur votre disque en local.
 
+- Il est important d'avoir sélectionné le répertoire que vous venez de créer car "PyCharm" va automatiquement créer un environnement virtuel (venv) dans ce 
+répertoire
+
+- Menu : Fichier->Paramètres->Editeur->Général->Importation automatique (rubrique Python) cocher "Afficher l'info-bulle d'importation automatique"
+
+# PyCharm vient d'ouvrir une fenêtre avec le contenu de "main.py" pour configurer les actions "UNDO" et "REDO"
+
+- Sélectionnez tout le texte avec "CTRL-A" puis "CTRL-X" (Couper), puis "CTL-Z" (UNDO) et faites un REDO "CTRL-Y" et "PyCharm" va vous demander de choisir l'action du "CTRL-Y" raccourci pour faire un "REDO".
+
+# Guide pour faire fonctionner mon projet
+
+# Démarrez le serveur MySql (Laragon(heidi.sql), uwamp ou xamp ou mamp, etc.))
+
+- Dans « PyCharm », importateur MA BD à partir du fichier DUMP
+
+- Ouvrir le fichier APP_DEPENSE_164/database/1_ImportationDumpSql.py
+
+- Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
+
+# En cas d'erreur /!\
+
+- Ouvrir le fichier .env à la racine du projet, vérifier les indications de connexion pour la bd.
+
+# Test simple de la connexion à la BD
+
+- Ouvrir le fichier APP_DEPENSE_164/database/2_test_connection_bd.py
+
+- Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
+
+# Démarrer le microframework FLASK
+
+- Dans le répertoire racine du projet, ouvrez le fichier run_mon_app.py
+
+- Cliquer avec le bouton droit sur l'onglet de ce fichier et choisir "run" (CTRL-MAJ-F10)
+
+- Dans la console du « run », il doit y avoir un lien à cliquer de cette forme :
+
+-   Exécuté sur http://127.0.0.1:5005
+
+- Cliquer dessus afin d'ouvrir dans votre navigateur mon projet
